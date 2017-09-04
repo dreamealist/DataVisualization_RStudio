@@ -1,0 +1,24 @@
+library("ggplot2")
+library("dplyr")
+library("gapminder")
+library("wesanderson")
+
+gap_07 <- filter(gapminder, year == 2007)
+
+ggplot(gap_07, aes(x = gdpPercap, y = lifeExp,
+                   color = continent)) +
+
+  geom_point(size = 2) +
+  scale_x_log10() +
+  theme_light() +
+  theme(legend.position = c(0.1, 0.85),
+legend.key = element_blank(),
+axis.text = element_text(size = 12),
+axis.title = element_text(size = 14)) +
+  labs(x = "Per capita GDP",
+       y = "Life Expectancy",
+       title = "2007 Life Expectancy and GDP",
+        color = "Continent") +
+  ggsave("life_exp_gdp_2007_cutom.png", 
+         width = 7, height = 7)
+
